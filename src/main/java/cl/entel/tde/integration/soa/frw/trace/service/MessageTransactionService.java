@@ -23,13 +23,12 @@ public class MessageTransactionService {
     public MessageTransactionService() {
     }
 
-    public List<MessageTransactionM> find(String eventID, String processID){
-        List<MessageTransaction> messageTransaction = null;
-        if (processID == null || processID.equals("")){
-            messageTransaction = messageTransactionRepository.findByEventID(eventID);
-        } else{
-            messageTransaction = messageTransactionRepository.findByEventIDAndProcessID(eventID, processID);
-        }
+    public List<MessageTransactionM> find(String eventID, String processID, String conversationID){
+        eventID = eventID.replace("*", "%");
+        processID = processID.replace("*", "%");
+        conversationID = conversationID.replace("*", "%");
+        List<MessageTransaction> messageTransaction = messageTransactionRepository.find(eventID, processID, conversationID);
+        System.out.print(messageTransaction .size());
         List<MessageTransactionM> messageTransactionM = messageTransaction.stream().map( x -> messasgeTransactionFactory.build(x, true)).collect(Collectors.toList());
         return messageTransactionM;
     }

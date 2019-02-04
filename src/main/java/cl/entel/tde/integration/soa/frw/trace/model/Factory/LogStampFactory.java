@@ -23,7 +23,7 @@ public class LogStampFactory {
     }
 
     public LogStampM build(LogStamp logStamp){
-        if(logStamp.getLogStampType().equals("ERROR")){
+        if(logStamp.getLogStampType().equals("ERR")){
             return build((Error) logStamp);
         }
         if(logStamp.getLogStampType().equals("LOG")){

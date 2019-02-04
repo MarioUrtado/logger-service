@@ -23,9 +23,14 @@ public class TraceFactory {
 
     public TraceM build(Trace trace){
         LogStampM log = null;
-        if (!trace.getLog().isEmpty()){
+        if (!trace.getLog().isEmpty()) {
             log = logStampFactory.build(trace.getLog().get(0));
         }
+
+        if (!trace.getError().isEmpty()) {
+            log = logStampFactory.build(trace.getError().get(0));
+        }
+
         return new TraceM(trace.getId(),trace.getSequence(), trace.getComponent(), trace.getOperation(), dateTimeFormater.build(trace.getLogTimestamp()), trace.getLogPlaceholder(), trace.getRcdStatus(), dateTimeFormater.build(trace.getCreationDate()), log);
     }
 }

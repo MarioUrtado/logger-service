@@ -3,7 +3,7 @@ package cl.entel.tde.integration.soa.frw.trace.domain;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "MessageTransaction")
 @Table(name = "ESB_MESSAGE_TRANSACTION")
 public class MessageTransaction {
 

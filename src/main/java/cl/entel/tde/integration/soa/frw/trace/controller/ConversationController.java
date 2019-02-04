@@ -28,8 +28,8 @@ public class ConversationController {
     }
 
     @RequestMapping(value = "/transaction", method = RequestMethod.GET, produces = "application/json")
-    public List<MessageTransactionM> findByEventID(@RequestParam(value = "eventID") String eventID, @RequestParam(value = "processID") String processID){
-        List<MessageTransactionM> messageTransactionM = messageTransactionService.find(eventID,processID);
+    public List<MessageTransactionM> findByEventID(@RequestParam(value = "eventID", required = false, defaultValue = "*") String eventID, @RequestParam(value = "processID", required = false, defaultValue = "*") String processID, @RequestParam(value = "conversationID", required = false, defaultValue = "*") String conversationID){
+        List<MessageTransactionM> messageTransactionM = messageTransactionService.find(eventID,processID, conversationID);
         return messageTransactionM;
     }
 
